@@ -217,7 +217,7 @@ class RAGChatbot:
         
         # If matching small talk and the query is short, respond using the LLM without document context.
         if any(re.search(p, question_lower) for p in general_patterns) and len(question_lower.split()) < 10:
-            prompt = f"""You are a friendly and professional assistant for Bihar Foundation. 
+            prompt = f"""You are a friendly and professional assistant for . 
             Respond naturally and very briefly to this general message: "{question}"
             Answer:"""
             return llm.invoke(prompt)
@@ -232,7 +232,7 @@ class RAGChatbot:
 
                 if relevant_chunks:
                     context = "\n\n".join(relevant_chunks)
-                    prompt = f"""You are a helpful assistant for Bihar Foundation.
+                    prompt = f"""You are a helpful assistant for .
 Use the context below to answer the question.
 
 Context:
