@@ -3,7 +3,4 @@ __pycache__
 .venv
 pre_trained_data
 uploaded_documents
-app.py
-mains.py
 vector_store
-requirements.txt

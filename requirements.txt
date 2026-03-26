@@ -1,0 +1,28 @@
+# Core requirements
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+
+# RAG requirements
+langchain
+langchain-community
+langchain-chroma
+langchain-text-splitters
+langchain-huggingface
+langchain-ollama
+chromadb
+
+# Speech Recognition
+SpeechRecognition==3.10.0
+
+# Text-to-Speech (Choose one or more)
+pyttsx3==2.90  # Offline, no internet needed
+# gtts==2.3.1  # Online, requires internet
+# edge-tts==6.1.9  # Windows-specific, good quality
+
+# Audio processing
+PyAudio==0.2.14
+
+# Document loaders
+unstructured==0.12.2
+pypdf==3.17.4
