@@ -63,7 +63,6 @@ body {
 /* Keep content layout stable during sidebar width transition */
 .sidebar>div {
     width: 300px;
-    /* Fixed width for children to prevent squishing during animation */
     flex-shrink: 0;
 }
 
