@@ -15,7 +15,7 @@ The system uses a vector store to perform semantic searches on your documents, r
 -   **Semantic Retrieval**:  Utilizes FAISS and Hugging Face sentence transformers for efficient, context-aware document retrieval.
 -   **LLM Integration**:  Seamlessly integrates with local LLMs via Ollama to generate context-aware responses.
 -   **Voice Interaction**: Supports voice-to-text input using the browser's SpeechRecognition API and provides text-to-speech audio output for responses.
--   **Chat History**: Automatically saves and loads chat sessions using browser local storage.
+-   **Chat History**:  Automatically saves and loads chat sessions using browser local storage.
 -   **Easy Initialization**: A "Reinitialize" feature allows you to rebuild the knowledge base from your pre-trained documents on the fly.
 
 ## 🛠️ Tech Stack
