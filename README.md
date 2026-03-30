@@ -44,12 +44,6 @@ The system uses a vector store to perform semantic searches on your documents, r
 [![Ollama](https://img.shields.io/badge/ollama-lightpink?style=for-the-badge&logo=ollama&logoColor=white)](https://www.ollama.org/)
 [![gTTS](https://img.shields.io/badge/gtts-green?style=for-the-badge&logo=gtts&logoColor=white)](https://www.gtts.org/)
 
-**Backend:**
--   Python
--   FastAPI
--   LangChain
--   Ollama (for LLM serving)
--   gTTS (for Text-to-Speech)
 
 **Vector Storage & Embeddings:**
 -   FAISS (Facebook AI Similarity Search)
