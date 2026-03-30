@@ -40,7 +40,7 @@ The system uses a vector store to perform semantic searches on your documents, r
 **Backend:**
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Uvicorn](https://img.shields.io/badge/Uvicorn-FF6200?style=for-the-badge&logo=uvicorn&logoColor=white)](https://www.uvicorn.org/)
+[![LangChain](https://img.shields.io/badge/LangChain-FF6200?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.org/)
 [![python-dotenv](https://img.shields.io/badge/python--dotenv-lightgreen?style=for-the-badge&logo=dotenv&logoColor=white)](https://github.com/theskumar/python-dotenv)
 
 
