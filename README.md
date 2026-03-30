@@ -47,11 +47,6 @@ The system uses a vector store to perform semantic searches on your documents, r
 -   FAISS (Facebook AI Similarity Search)
 -   Hugging Face Sentence Transformers
 
-**Frontend:**
--   HTML5
--   CSS3
--   JavaScript
-
 ## 🚀 Quick Start
 
 Follow these steps to set up and run the Two-way-RAG application on your local machine.
