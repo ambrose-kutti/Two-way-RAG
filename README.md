@@ -41,7 +41,7 @@ The system uses a vector store to perform semantic searches on your documents, r
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![LangChain](https://img.shields.io/badge/LangChain-FF6200?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.org/)
-[![python-dotenv](https://img.shields.io/badge/python--dotenv-lightgreen?style=for-the-badge&logo=dotenv&logoColor=white)](https://github.com/theskumar/python-dotenv)
+[![Ollama](https://img.shields.io/badge/ollama-lightpink?style=for-the-badge&logo=ollama&logoColor=white)](https://www.ollama.org/)
 
 
 **Backend:**
