@@ -154,11 +154,10 @@ Contributions are welcome! If you have suggestions for improvements or want to f
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
-LangChain: For providing an excellent framework for building LLM applications.
-Ollama: For enabling easy local LLM and embedding model deployment.
-ChromaDB: For the efficient and user-friendly vector database.
-FastAPI: For the modern, fast (high-performance) web framework.
-pypdf: For robust PDF document processing.
+
+1. LangChain: For providing an excellent framework for building LLM applications.
+2. Ollama: For enabling easy local LLM and embedding model deployment.
+3. FastAPI: For the modern, fast (high-performance) web framework.
 
 ## 📞 Support & Contact
 
