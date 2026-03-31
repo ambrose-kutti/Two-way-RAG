@@ -49,8 +49,6 @@ The system uses a vector store to perform semantic searches on your documents, r
 [![FAISS](https://img.shields.io/badge/faiss-darkred?style=for-the-badge&logo=faiss&logoColor=white)](https://www.fassi.com/)
 [![Hugging Face](https://img.shields.io/badge/huggingface-purple?style=for-the-badge&logo=huggingface&logoColor=white)](https://www.fassi.com/)
 
--   FAISS (Facebook AI Similarity Search)
--   Hugging Face Sentence Transformers
 
 ## 🚀 Quick Start
 
