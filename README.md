@@ -92,6 +92,7 @@ Follow these steps to set up and run the Two-way-RAG application on your local m
 5.  **Run the application:**
     ```bash
     uvicorn main:app --reload (for simple run)
+    OR
     uvicorn main:app --host 0.0.0.0 --port 8013 --reload (you can also specify the port number and run)
     ```
 
