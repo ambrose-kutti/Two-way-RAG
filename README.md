@@ -29,6 +29,15 @@ The system uses a vector store to perform semantic searches on your documents, r
 
 ## 🖥️ Screenshots
 
+**Chatbot UI with Sidebar:**
+
+<img width="1365" height="643" alt="Screenshot 2026-04-01 111926" src="https://github.com/user-attachments/assets/9c9cbe29-27c9-44b9-b781-fced114227c6"/>
+
+
+**Previous Chat History on the Side and Newchat:**
+
+<img width="1365" height="653" alt="Screenshot 2026-04-01 112113" src="https://github.com/user-attachments/assets/21462ca3-49a9-4709-9dcf-90709ec0f8c4"/>
+
 ## 🛠️ Tech Stack
 
 **Frontend:**
