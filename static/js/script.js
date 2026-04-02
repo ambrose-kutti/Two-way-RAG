@@ -127,7 +127,6 @@ function toggleVoiceRecognition() {
         updateStatus("Voice recognition not supported", 'error');
         return;
     }
-
     if (!isListening) {
         startListening();
     } else {
@@ -154,7 +153,6 @@ function stopListening() {
             console.log("Error stopping recognition:", error);
         }
     }
-
     isListening = false;
     voiceBtn.classList.remove('recording');
     voiceBtnText.textContent = "Start Speaking";
@@ -167,14 +165,11 @@ async function sendMessage() {
         updateStatus("Please type or speak something first", 'error');
         return;
     }
-
     // Add user message to chat
     addMessage(text, true);
     saveChatToStorage('user', text);
-
     // Clear input
     textInput.value = '';
-
     // Update status
     updateStatus("Processing your question...", 'processing');
 
@@ -186,7 +181,6 @@ async function sendMessage() {
             method: 'POST',
             body: formData
         });
-
         const result = await response.json();
 
         if (result.success) {
@@ -197,16 +191,13 @@ async function sendMessage() {
             } else if (result.answer.includes('upload') || result.answer.includes('document')) {
                 messageType = 'uploaded';
             }
-
             // Add bot response
             addMessage(result.answer, false, messageType);
             saveChatToStorage('bot', result.answer, messageType);
-
             // Play audio if available
             if (result.audio_base64) {
                 playAudio(result.audio_base64);
             }
-
             updateStatus("Ready for next question", 'ready');
         } else {
             addMessage("Sorry, there was an error processing your request.", false);
@@ -223,7 +214,6 @@ async function sendMessage() {
 function playAudio(base64Audio) {
     try {
         if (!base64Audio) return;
-
         const audio = new Audio('data:audio/mp3;base64,' + base64Audio);
         audio.play().catch(e => {
             console.log("Could not play audio:", e);
@@ -250,7 +240,6 @@ async function uploadDocuments() {
         uploadStatus.className = 'upload-status error';
         return;
     }
-
     updateStatus("Uploading and learning from document...", 'processing');
     uploadStatus.textContent = "Uploading...";
     uploadStatus.className = 'upload-status';
@@ -261,7 +250,6 @@ async function uploadDocuments() {
         const file = files[0];
         const singleFormData = new FormData();
         singleFormData.append('file', file);
-
         const response = await fetch('/upload-document', {
             method: 'POST',
             body: singleFormData
