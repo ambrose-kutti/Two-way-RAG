@@ -102,11 +102,11 @@ Follow these steps to set up and run the Two-way-RAG application on your local m
     ```bash
     uvicorn main:app --reload (for simple run)
     OR
-    uvicorn main:app --host 0.0.0.0 --port 8013 --reload (you can also specify the port number and run)
+    uvicorn main:app --host 0.0.0.0 --port 8000 --reload (you can also specify the port number and run)
     ```
 
 6.  **Access the application:**
-    Open your web browser and navigate to `http://localhost:8013`.
+    Open your web browser and navigate to `http://localhost:8000`.
 
 
 ## 📁 Project Structure
