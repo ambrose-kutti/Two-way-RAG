@@ -375,10 +375,8 @@ function loadSession(sessionId) {
 function startNewChat() {
     currentSessionId = null;
     renderHistoryList();
-
     const chatBox = document.getElementById('chatBox');
     chatBox.innerHTML = '';
-
     const div = document.createElement('div');
     div.className = 'message bot';
     div.innerHTML = `
@@ -393,12 +391,9 @@ function startNewChat() {
 
 function deleteSession(sessionId, event) {
     if (event) event.stopPropagation(); // Prevent loading the session
-
     if (!confirm('Are you sure you want to delete this chat?')) return;
-
     chatHistory = chatHistory.filter(s => s.id !== sessionId);
     localStorage.setItem('rag_chat_history', JSON.stringify(chatHistory));
-
     if (currentSessionId === sessionId) {
         startNewChat();
     } else {
