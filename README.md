@@ -161,6 +161,7 @@ Contributions are welcome! If you have suggestions for improvements or want to f
 6.  Open a Pull Request.
 
 ## 📄 License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
