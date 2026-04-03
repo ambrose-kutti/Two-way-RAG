@@ -2,7 +2,7 @@
 
 An interactive Retrieval Augmented Generation (RAG) system with a voice-enabled web interface, powered by FastAPI, LangChain, and Ollama. This application allows you to build and chat with a knowledge base created from your own documents.
 
-<div align ="center">
+<div align ="center"> 
     
 [![GitHub stars](https://img.shields.io/github/stars/ambrose-kutti/UI-Based-RAG?style=for-the-badge)](https://github.com/ambrose-kutti/UI-Based-RAG/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/ambrose-kutti/UI-Based-RAG?style=for-the-badge)](https://github.com/ambrose-kutti/UI-Based-RAG/network)
