@@ -47,7 +47,7 @@ except ImportError:
 DOCUMENTS_DIR = "uploaded_documents"
 VECTOR_STORE_DIR = "vector_store"
 PRE_TRAINED_DATA_DIR = (
-    "pre_trained_data"  # Folder containing your existing TXT files
+    "pre_trained_data"  # Folder containing your existing TXT files (you can change the name of the folder)
 )
 # Create directories
 os.makedirs(DOCUMENTS_DIR, exist_ok=True)
@@ -121,8 +121,7 @@ def create_vector_store(documents, store_name: str = "default"):
     embeddings = HuggingFaceEmbeddings(
         model_name="all-MiniLM-L6-v2", model_kwargs={"device": "cpu"}
     )
-    # Create vector store
-    vector_store = FAISS.from_documents(chunks, embeddings)
+    vector_store = FAISS.from_documents(chunks, embeddings)    # Create vector store
     # Save to disk
     store_path = os.path.join(VECTOR_STORE_DIR, store_name)
     vector_store.save_local(store_path)
@@ -152,6 +151,7 @@ def query_documents(query: str, vector_store, k: int = 3) -> List[str]:
         return []
     results = vector_store.similarity_search(query, k=k)
     return [doc.page_content for doc in results]
+    
 # =========================
 # CHAT RESPONSE GENERATOR
 # =========================
@@ -162,8 +162,7 @@ class RAGChatbot:
 
     def initialize_vector_store(self):
         """Initialize vector store with pre-trained data or load existing"""
-        # Try to load existing vector store first
-        self.vector_store = load_vector_store()
+        self.vector_store = load_vector_store()    # Try to load existing vector store first
         # If no vector store exists, create one from pre-trained data
         if not self.vector_store:
             print("No existing vector store found. Creating from pre-trained data...")
@@ -184,8 +183,7 @@ class RAGChatbot:
     def update_vector_store(self, documents):
         """Update vector store with new documents"""
         if not self.vector_store:
-            # If no vector store exists, create new one
-            self.vector_store = create_vector_store(documents, "default")
+            self.vector_store = create_vector_store(documents, "default")    # If no vector store exists, create new one 
         else:
             # If vector store exists, add new documents to it
             text_splitter = RecursiveCharacterTextSplitter(
@@ -194,19 +192,18 @@ class RAGChatbot:
                 length_function=len,
             )
             chunks = text_splitter.split_documents(documents)
-            # Add to existing vector store
-            self.vector_store.add_documents(chunks)
-            # Save updated vector store
-            store_path = os.path.join(VECTOR_STORE_DIR, "default")
+            self.vector_store.add_documents(chunks)    # Add to existing vector store
+            store_path = os.path.join(VECTOR_STORE_DIR, "default")     # Save updated vector store
             self.vector_store.save_local(store_path)
             print(f"Added {len(chunks)} new chunks to vector store")
 
     def get_response(self, question: str) -> str:
         """Get response combining greetings and document knowledge"""
         question_lower = question.lower().strip()
-
+        # ============================================
         # 1. QUICK DETECTION FOR GENERAL CHAT
         # Bypass vector search for simple greetings/small talk to improve response speed.
+        # ============================================
         general_patterns = [
             r"\bhi+\b", r"\bhello\b", r"\bhey\b", r"\bgreetings\b", 
             r"\bgood (morning|afternoon|evening|night)\b",
@@ -214,46 +211,41 @@ class RAGChatbot:
             r"\bthank(s| you)?\b", r"\bbye\b", r"\bgoodbye\b", r"\bsee you\b",
             r"\bwho are you\b", r"\bwhat are you\b", r"\byour name\b"
         ]
-        
         # If matching small talk and the query is short, respond using the LLM without document context.
         if any(re.search(p, question_lower) for p in general_patterns) and len(question_lower.split()) < 10:
             prompt = f"""You are a friendly and professional assistant for . 
             Respond naturally and very briefly to this general message: "{question}"
-            Answer:"""
-            return llm.invoke(prompt)
+            Answer: "" "
+        return llm.invoke(prompt)
         # ============================================
         # 2. DOCUMENT-BASED Q&A (RAG)
         # ============================================
-
         if self.vector_store:
             try:
                 relevant_chunks = query_documents(question, self.vector_store, k=3)
-
                 if relevant_chunks:
                     context = "\n\n".join(relevant_chunks)
-                    prompt = f"""You are a helpful assistant for .
-Use the context below to answer the question.
-
-Context:
-{context}
-
-Question: {question}
-
-Instructions:
- - If the answer exists in the context, answer clearly and accurately using ONLY information from the context.
- - If the question is general conversation (greetings, good night, jokes), answer it naturally.
- - If the question is specific but unrelated to the context, say: "I don't have information about that in my documents."
- - NEVER mention any filenames, document names, or source references in your answer.
-
-Answer:"""
+                    prompt = f""" You are a helpful assistant for .
+                                    Use the context below to answer the question.
+                                    
+                                    Context:
+                                    {context}
+                                    
+                                    Question: {question}
+                                    
+                                    Instructions:
+                                     - If the answer exists in the context, answer clearly and accurately using ONLY information from the context.
+                                     - If the question is general conversation (greetings, good night, jokes), answer it naturally.
+                                     - If the question is specific but unrelated to the context, say: "I don't have information about that in my documents."
+                                     - NEVER mention any filenames, document names, or source references in your answer.
+                                    
+                                    Answer:"""
                     return llm.invoke(prompt)
                 else:
                     return "I don't have information about that in my documents."
-
             except Exception as e:
                 print(f"Document query error: {e}")
                 return "Sorry, I encountered an error while searching the documents."
-
         return "I don't have information about that in my documents."
 
 # =========================
@@ -295,14 +287,11 @@ async def upload_document(file: UploadFile = File(...)):
             detail="Document processing not available. Install required packages.",
         )
     try:
-        # Save file
-        file_path = save_uploaded_file(file)
-        # Load document
-        documents = load_documents(file_path)
+        file_path = save_uploaded_file(file)     # Save file
+        documents = load_documents(file_path)    # Load document
         if not documents:
             raise HTTPException(status_code=400, detail="Failed to load document")
-        # Update vector store
-        chatbot.update_vector_store(documents)
+        chatbot.update_vector_store(documents)    # Update vector store
         # Get document info
         num_pages = len(documents) if hasattr(documents, "__len__") else 1
         content_preview = (
@@ -323,8 +312,7 @@ async def upload_document(file: UploadFile = File(...)):
 async def reinitialize():
     """Reinitialize chatbot with current training data"""
     chatbot.initialize_vector_store()
-    # Count training files
-    txt_files = []
+    txt_files = []    # Count training files
     if os.path.exists(PRE_TRAINED_DATA_DIR):
         txt_files = [f for f in os.listdir(PRE_TRAINED_DATA_DIR) if f.endswith(".txt")]
     return {
@@ -337,8 +325,7 @@ async def reinitialize():
 @app.post("/chat")
 async def chat(question: str = Form(...)):
     """Main chat endpoint with RAG"""
-    # Get response from chatbot
-    answer = chatbot.get_response(question)
+    answer = chatbot.get_response(question)    # Get response from chatbot
     # Generate speech
     audio_base64 = text_to_speech(answer)
     return {
@@ -352,8 +339,7 @@ async def chat(question: str = Form(...)):
 async def document_status():
     """Check document status including training data"""
     has_documents = chatbot.vector_store is not None
-    # Count files in documents directory
-    doc_files = []
+    doc_files = []    # Count files in documents directory
     if os.path.exists(DOCUMENTS_DIR):
         doc_files = [
             f for f in os.listdir(DOCUMENTS_DIR) if f.endswith((".pdf", ".txt"))
@@ -368,7 +354,7 @@ async def document_status():
         "has_documents": has_documents,
         "document_count": len(doc_files),
         "training_file_count": len(training_files),
-        "documents": doc_files[:10],  # Return first 10 files
+        "documents": doc_files[:10],    # Return first 10 files
         "training_files": training_files[:10],
     }
 
